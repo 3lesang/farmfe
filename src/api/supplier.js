@@ -10,9 +10,9 @@ export const getSupplier = async (id) => {
 				'Content-Type': 'application/json',
 			},
 		});
-		if (response.statusText !== 'OK') {
+		/*if (response.statusText !== 'OK') {
 			throw new Error(response.Error);
-		}
+		}*/
 		const supplier = await response.json();
 		return supplier;
 	} catch (err) {

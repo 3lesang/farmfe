@@ -6,16 +6,17 @@ export const getImage_Sliders = async ({ searchKeyword = '' }) => {
 		let queryString = '?';
 		if (searchKeyword) queryString += `q=${searchKeyword}`;
 		const url = `${apiUrl}/image_sliders${queryString}`;
-		const response = await fetch(url, {
+		/*const response = await fetch(url, {
 			method: 'GET',
 			headers: {
 				'Content-Type': 'application/json',
 			},
-		});
+		});*/
+		const response = await fetch(url);
 		const image_sliders = await response.json();
-		if (response.statusText !== 'OK') {
+		/*if (response.statusText !== 'OK') {
 			throw new Error(response.Error);
-		}
+		}*/
 		return image_sliders;
 	} catch (err) {
 		console.log(err);

@@ -4,19 +4,23 @@ export const getSummary = async () => {
 	try {
         const url = `${apiUrl}/summary`;
 		const { token } = getUserInfo();
-		const response = await fetch(url, {
+		console.log(url);
+		/*const response = await fetch(url, {
 			method: 'GET',
 			headers: {
 				'Content-Type': 'application/json',
 				'Authorization': `Bearer ${token}`,
 			},
 		});
-		if (response.statusText !== 'OK') {
+		/*if (response.statusText !== 'OK') {
 			throw new Error(response.Error);
 		} else {
             const data = await response.json();
             return data;
-		}
+		}*/
+		const response = await fetch(url);
+		const data = await response.json();
+		return data;
 	} catch (err) {
 		return {
 			error: err.message,

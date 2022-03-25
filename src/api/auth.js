@@ -15,9 +15,9 @@ export const login = async ({ username, pw }) => {
         });
         const data = await response.json();
         // console.log(data);
-        if (response.statusText !== 'OK') {
+        /*if (response.statusText !== 'OK') {
             throw new Error(response.Error);
-        }
+        }*/
         return data;
     } catch (err) {
         // console.log(err);
@@ -35,9 +35,9 @@ export const register = async (user) => {
             body: JSON.stringify(user),
         });
         // console.log(res.statusText);
-        if (res.statusText !== 'OK') {
+        /*if (res.statusText !== 'OK') {
             throw new Error(response.Error);
-        }
+        }*/
         const data = await res.json();
         return data;
     } catch (error) {

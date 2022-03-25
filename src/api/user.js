@@ -7,17 +7,18 @@ export const getUsers = async ({ searchKeyword = '' }) => {
         let queryString = '?';
         if (searchKeyword) queryString += `q=${searchKeyword}`;
         const url = `${apiUrl}/users${queryString}`;
-        const response = await fetch(url, {
+        /*const response = await fetch(url, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`,
             },
-        });
+        });*/
+		const response = await fetch(url);
         const users = await response.json();
-        if (response.statusText !== 'OK') {
+        /*if (response.statusText !== 'OK') {
             throw new Error(response.Error);
-        }
+        }*/
         return users;
     } catch (err) {
         console.log(err);
@@ -36,11 +37,11 @@ export const getUser = async (id) => {
                 'Authorization': `Bearer ${token}`,
             },
         });
-        if (response.statusText !== 'OK') {
+        /*if (response.statusText !== 'OK') {
             throw new Error(response.Error);
-        }
-        const product = await response.json();
-        return product;
+        }*/
+        const data = await response.json();
+        return data;
     } catch (err) {
         console.log(err);
         return { error: err.message };
@@ -51,7 +52,7 @@ export const updateUser = async ({ full_name, username, pw }) => {
     try {
         const { id, token } = getUserInfo();
         const url = `${apiUrl}/users`;
-        const response = await fetch(url, {
+        /*const response = await fetch(url, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -64,9 +65,10 @@ export const updateUser = async ({ full_name, username, pw }) => {
                 pw,
             }),
         });
-        if (response.statusText !== 'OK') {
+        /*if (response.statusText !== 'OK') {
             throw new Error(response.Error);
-        }
+        }*/
+		const response = await fetch(url);
         const data = await response.json();
         return data;
     } catch (err) {
@@ -87,9 +89,9 @@ export const deleteUser = async (userId) => {
                 'Authorization': `Bearer ${token}`,
             },
         });
-        if (response.statusText !== 'OK') {
+        /*if (response.statusText !== 'OK') {
             throw new Error(response.Error);
-        }
+        }*/
         return true;
     } catch (err) {
         return { error: err.message };

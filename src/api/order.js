@@ -4,7 +4,7 @@ export const createOrder = async (order) => {
     try {
         const url = `${apiUrl}/orders`;
         const { token } = getUserInfo();
-        const response = await fetch(url, {
+        /*const response = await fetch(url, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -12,10 +12,12 @@ export const createOrder = async (order) => {
             },
             body: JSON.stringify(order),
         });
-        if (response.statusText !== 'OK') {
+        /*if (response.statusText !== 'OK') {
             throw new Error(response.Error);
-        }
-        return response.data;
+        }*/
+		const response = await fetch(url);
+		const data = await response.json(); 
+        return data;
     } catch (err) {
         return { error: err.message };
     }
@@ -24,16 +26,17 @@ export const getOrders = async () => {
     try {
         const url = `${apiUrl}/orders`;
         const { token } = getUserInfo();
-        const response = await fetch(url, {
+        /*const response = await fetch(url, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`,
             },
         });
-        if (response.statusText !== 'OK') {
+        /*if (response.statusText !== 'OK') {
             throw new Error(response.data.message);
-        }
+        }*/
+		const response = await fetch(url);
         const data = await response.json();
         return data;
     } catch (err) {
@@ -46,7 +49,7 @@ export const deleteOrder = async (orderId) => {
     try {
         const url = `${apiUrl}/orders/${orderId}`;
         const { token } = getUserInfo();
-        const response = await fetch(url, {
+        /*const response = await fetch(url, {
 
             method: 'DELETE',
             headers: {
@@ -54,9 +57,10 @@ export const deleteOrder = async (orderId) => {
                 Authorization: `Bearer ${token}`,
             },
         });
-        if (response.statusText !== 'OK') {
+        /*if (response.statusText !== 'OK') {
             throw new Error(response.data.message);
-        }
+        }*/
+		const response = await fetch(url);
         const data = await response.json();
         return data;
     } catch (err) {
@@ -67,17 +71,19 @@ export const getOrder = async (id) => {
     try {
         const url = `${apiUrl}/orders/${id}`;
         const { token } = getUserInfo();
-        const response = await fetch(url, {
+        /*const response = await fetch(url, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`,
             },
         });
-        if (response.statusText !== 'OK') {
+        /*if (response.statusText !== 'OK') {
             throw new Error(response.data.message);
-        }
-        return response.data;
+        }*/
+		const response = await fetch(url);
+		const data = await response.json();
+        return data;
     } catch (err) {
         return { error: err.message };
     }
@@ -93,9 +99,10 @@ export const getMyOrders = async () => {
                 'Authorization': `Bearer ${token}`,
             },
         });
-        if (response.statusText !== 'OK') {
+        /*if (response.statusText !== 'OK') {
             throw new Error(response.data.message);
-        }
+        }*/
+		//const response = await fetch(url);
         const data = response.json();
         return data;
     } catch (err) {
@@ -112,9 +119,9 @@ export const getPaypalClientId = async () => {
             'Content-Type': 'application/json',
         },
     });
-    if (response.statusText !== 'OK') {
+    /*if (response.statusText !== 'OK') {
         throw new Error(response.data.message);
-    }
+    }*/
     return response.data.clientId;
 };
 
@@ -130,9 +137,9 @@ export const payOrder = async (orderId, paymentResult) => {
             },
             body: JSON.stringify(vpaymentResult)
         });
-        if (response.statusText !== 'OK') {
+        /*if (response.statusText !== 'OK') {
             throw new Error(response.data.message);
-        }
+        }*/
         return response.data;
     } catch (err) {
         return { error: err.response ? err.response.data.message : err.message };
@@ -149,9 +156,9 @@ export const deliverOrder = async (orderId) => {
                 'Authorization': `Bearer ${token}`,
             },
         });
-        if (response.statusText !== 'OK') {
+        /*if (response.statusText !== 'OK') {
             throw new Error(response.data.message);
-        }
+        }*/
         return response.data;
     } catch (err) {
         return { error: err.response ? err.response.data.message : err.message };

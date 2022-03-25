@@ -10,9 +10,9 @@ export const createReview = async (productId, review) => {
             },
             data: review,
         });
-        if (response.statusText !== 'OK') {
+        /*if (response.statusText !== 'OK') {
             throw new Error(response.data.message);
-        }
+        }*/
         return response.data;
     } catch (err) {
         return { error: err.response.data.message || err.message };

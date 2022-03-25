@@ -6,16 +6,17 @@ export const getProducts = async ({ searchKeyword = '' }) => {
 		let queryString = '?';
 		if (searchKeyword) queryString += `q=${searchKeyword}`;
 		const url = `${apiUrl}/products${queryString}`;
-		const response = await fetch(url, {
+		/*const response = await fetch(url, {
 			method: 'GET',
 			headers: {
 				'Content-Type': 'application/json',
 			},
-		});
+		});*/
+		const response = await fetch(url);
 		const products = await response.json();
-		if (response.statusText !== 'OK') {
+		/*if (response.statusText !== 'OK') {
 			throw new Error(response.Error);
-		}
+		}*/
 		return products;
 	} catch (err) {
 		console.log(err);
@@ -26,15 +27,16 @@ export const getProducts = async ({ searchKeyword = '' }) => {
 export const getProduct = async (id) => {
 	try {
 		const url = `${apiUrl}/products/${id}`;
-		const response = await fetch(url, {
+		/*const response = await fetch(url, {
 			method: 'GET',
 			headers: {
 				'Content-Type': 'application/json',
 			},
-		});
-		if (response.statusText !== 'OK') {
+		});*/
+		const response = await fetch(url);
+		/*if (response.statusText !== 'OK') {
 			throw new Error(response.Error);
-		}
+		}*/
 		const product = await response.json();
 		return product;
 	} catch (err) {
@@ -55,9 +57,9 @@ export const createProduct = async () => {
 				'Authorization': `Bearer ${token}`,
 			},
 		});
-		if (response.statusText !== 'OK') {
+		/*if (response.statusText !== 'OK') {
 			throw new Error(response.Error);
-		}
+		}*/
 		const data = await response.json();
 		return data;
 	} catch (err) {
@@ -79,9 +81,9 @@ export const updateProduct = async (product) => {
 			},
 			body: JSON.stringify(product),
 		});
-		if (response.statusText !== 'OK') {
+		/*if (response.statusText !== 'OK') {
 			throw new Error(response.Error);
-		}
+		}*/
 		const data = await response.json();
 		return data;
 	} catch (err) {
@@ -101,9 +103,9 @@ export const deleteProduct = async (productId) => {
 				'Authorization': `Bearer ${token}`,
 			},
 		});
-		if (response.statusText !== 'OK') {
+		/*if (response.statusText !== 'OK') {
 			throw new Error(response.Error);
-		}
+		}*/
 		return true;
 	} catch (err) {
 		return { error: err.message };
@@ -123,11 +125,12 @@ export const uploadProductImage = async (formData) => {
 			},
 			body: formData,
 		});
-		if (response.statusText !== 'OK') {
+		/*if (response.statusText !== 'OK') {
 			throw new Error(response.Error);
 		} else {
 			return response.data;
-		}
+		}*/
+		return response.data;
 	} catch (err) {
 		return { error: err.response.message || err.message };
 	}
